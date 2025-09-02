@@ -9,23 +9,24 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LibroService {
+public class LibroService implements ILibroService{
 
     @Autowired
     private LibroDAO libroDAO;
 
+    @Override
     public List<Libro> traerLibros() {
         return libroDAO.findAll();
     }
-
+    @Override
     public Optional<Libro> buscaIdLibro(Long id){
         return libroDAO.findById(id);
     }
-
+    @Override
     public Libro guardarLibro(Libro libro){
         return (Libro) libroDAO.save(libro);
     }
-
+    @Override
     public void eliminarLibro(Long id) {
          libroDAO.deleteById(id);
     }
