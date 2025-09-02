@@ -1,13 +1,19 @@
 package com.springcourse.spring_boot.model;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import jakarta.persistence.*;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Autor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre, apellido, telefono;
+
+    private String nombre;
+    private String apellido;
+    private String telefono;
 }
