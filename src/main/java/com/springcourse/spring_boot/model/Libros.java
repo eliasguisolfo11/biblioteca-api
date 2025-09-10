@@ -1,7 +1,9 @@
 package com.springcourse.spring_boot.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDate;
 
 @Data
@@ -21,6 +23,9 @@ public class Libros {
     private double precio;
 
     @ManyToOne
-    @JoinColumn(name = "autor_id") // Esto es clave para que Hibernate sepa cómo unir
+    @JoinColumn(name = "autor_id")
+    @JsonBackReference
     private Autor autor;
+
+
 }
