@@ -1,6 +1,6 @@
 package com.springcourse.spring_boot.service;
 
-import com.springcourse.spring_boot.model.Libro;
+import com.springcourse.spring_boot.model.Libros;
 import com.springcourse.spring_boot.repository.LibroDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,16 @@ public class LibroService implements ILibroService{
     private LibroDAO libroDAO;
 
     @Override
-    public List<Libro> traerLibros() {
+    public List<Libros> traerLibros() {
         return libroDAO.findAll();
     }
     @Override
-    public Optional<Libro> buscaIdLibro(Long id){
+    public Optional<Libros> buscaIdLibro(Long id){
         return libroDAO.findById(id);
     }
     @Override
-    public Libro guardarLibro(Libro libro){
-        return (Libro) libroDAO.save(libro);
+    public Libros guardarLibro(Libros libro){
+        return (Libros) libroDAO.save(libro);
     }
     @Override
     public void eliminarLibro(Long id) {

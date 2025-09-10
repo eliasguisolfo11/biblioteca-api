@@ -1,7 +1,7 @@
 package com.springcourse.spring_boot.dto;
 
 import com.springcourse.spring_boot.model.Autor;
-import com.springcourse.spring_boot.model.Libro;
+import com.springcourse.spring_boot.model.Libros;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,10 +14,10 @@ public class LibroDTO {
     private double precio;
     private AutorDTO autor;
 
-    public LibroDTO(Libro p_libro) {
+    public LibroDTO(Libros p_libro) {
         AutorDTO autorDTO = new AutorDTO(p_libro.getAutor());
         this.editorial = p_libro.getEditorial();
-        this.fechaEdicion = p_libro.getFechaEdicion();
+        this.fechaEdicion =   p_libro.getFechaEdicion().toString();
         this.genero = p_libro.getGenero();
         this.precio = p_libro.getPrecio();
         this.titulo = p_libro.getTitulo();
