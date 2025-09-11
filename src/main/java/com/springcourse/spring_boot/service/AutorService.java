@@ -24,10 +24,10 @@ public class AutorService implements IAutorService{
     }
     @Override
     public Autor guardarAutor(Autor autor) {
-        return (Autor) autorDAO.save(autor);
+        return autorDAO.save(autor);
     }
     @Override
     public void eliminarAutor(Long id) {
-         autorDAO.deleteById(id);
+        autorDAO.deleteById(id);
     }
 }
