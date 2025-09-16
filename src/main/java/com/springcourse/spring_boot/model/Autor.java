@@ -1,12 +1,14 @@
 package com.springcourse.spring_boot.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(exclude = "libros")
+@ToString(exclude = "libros")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,7 +23,7 @@ public class Autor {
     private String telefono;
 
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @JsonIgnoreProperties("autor")
     private List<Libros> libros;
 
 }

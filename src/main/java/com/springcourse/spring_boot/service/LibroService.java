@@ -1,33 +1,39 @@
 package com.springcourse.spring_boot.service;
 
-import com.springcourse.spring_boot.model.Libros;
-import com.springcourse.spring_boot.repository.LibroDAO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.springcourse.spring_boot.model.Libros;
+import com.springcourse.spring_boot.repository.AutorDAO;
+import com.springcourse.spring_boot.repository.LibroDAO;
 
 @Service
 public class LibroService implements ILibroService{
 
-    @Autowired
-    private LibroDAO libroDAO;
+    private final LibroDAO dao;
+    private final AutorDAO autorDao;
+
+    public LibroService(LibroDAO dao, AutorDAO autorDao) {
+        this.dao = dao;
+        this.autorDao = autorDao;
+    }
 
     @Override
     public List<Libros> traerLibros() {
-        return libroDAO.findAll();
+        return dao.findAll();
     }
     @Override
     public Optional<Libros> buscaIdLibro(Long id){
-        return libroDAO.findById(id);
+        return dao.findById(id);
     }
     @Override
     public Libros guardarLibro(Libros libro){
-        return (Libros) libroDAO.save(libro);
+        return dao.save(libro);
     }
     @Override
     public void eliminarLibro(Long id) {
-         libroDAO.deleteById(id);
+        dao.deleteById(id);
     }
 }

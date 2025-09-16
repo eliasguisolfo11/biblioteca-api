@@ -1,12 +1,14 @@
 package com.springcourse.spring_boot.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
 @Data
+@EqualsAndHashCode(exclude = "autor")
+@ToString(exclude = "autor")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,7 +26,7 @@ public class Libros {
 
     @ManyToOne
     @JoinColumn(name = "autor_id")
-    @JsonBackReference
+    @JsonIgnoreProperties("libros")
     private Autor autor;
 
 

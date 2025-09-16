@@ -1,7 +1,9 @@
 package com.springcourse.spring_boot.dto;
 
-import com.springcourse.spring_boot.model.Autor;
+import java.time.LocalDate;
+
 import com.springcourse.spring_boot.model.Libros;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,16 +12,20 @@ import lombok.NoArgsConstructor;
 public class LibroDTO {
 
 
-    private String titulo, editorial, genero, fechaEdicion;
+    private String titulo; 
+    private String editorial;
+    private String genero;
+    private LocalDate fechaEdicion;
     private double precio;
     private AutorDTO autor;
 
-    public LibroDTO(Libros p_libro) {
-        AutorDTO autorDTO = new AutorDTO(p_libro.getAutor());
-        this.editorial = p_libro.getEditorial();
-        this.fechaEdicion =   p_libro.getFechaEdicion().toString();
-        this.genero = p_libro.getGenero();
-        this.precio = p_libro.getPrecio();
-        this.titulo = p_libro.getTitulo();
+    public LibroDTO(Libros lirodto) {
+        this.autor = new AutorDTO(lirodto.getAutor());
+        this.editorial = lirodto.getEditorial();
+        this.fechaEdicion = lirodto.getFechaEdicion();
+        this.genero = lirodto.getGenero();
+        this.precio = lirodto.getPrecio();
+        this.titulo = lirodto.getTitulo();
     }
+
 }

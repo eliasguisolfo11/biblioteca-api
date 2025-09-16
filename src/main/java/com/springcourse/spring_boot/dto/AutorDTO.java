@@ -1,6 +1,7 @@
 package com.springcourse.spring_boot.dto;
 
 import com.springcourse.spring_boot.model.Autor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,12 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AutorDTO {
 
-    private String nombre, apellido, telefono;
+    private String nombre;
+    private String apellido;
+    private String telefono;
 
-    public AutorDTO(Autor p_autor) {
-        this.apellido = p_autor.getApellido();
-        this.telefono = p_autor.getTelefono();
-        this.nombre = p_autor.getNombre();
+    public AutorDTO(Autor autordto) {
+        this.nombre = autordto.getNombre();
+        this.apellido = autordto.getApellido();
+        this.telefono = autordto.getTelefono();
     }
 }
 
