@@ -1,9 +1,8 @@
 package com.springcourse.spring_boot.controller;
 
 
-import com.springcourse.spring_boot.model.Libros;
-import com.springcourse.spring_boot.service.ILibroService;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.springcourse.spring_boot.model.Libros;
+import com.springcourse.spring_boot.service.ILibroService;
 
 @RestController
 @RequestMapping("/api/libros")
@@ -27,7 +27,7 @@ public class LibroController {
     @GetMapping
     public ResponseEntity<List<Libros>> listarTodos() {
         List<Libros> libros = libroServ.traerLibros();
-        return new ResponseEntity<>(libros, HttpStatus.OK);
+        return ResponseEntity.ok(libros);
     }
 
     @GetMapping("/{id}")
