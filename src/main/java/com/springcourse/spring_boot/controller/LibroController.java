@@ -20,26 +20,26 @@ import com.springcourse.spring_boot.service.ILibroService;
 public class LibroController {
 
 
-    private final ILibroService libroServ;
+    private final ILibroService service;
 
-    public LibroController(ILibroService libroServ) {this.libroServ = libroServ;}
+    public LibroController(ILibroService service) {this.service = service;}
 
     @GetMapping
     public ResponseEntity<List<Libros>> listarTodos() {
-        List<Libros> libros = libroServ.traerLibros();
+        List<Libros> libros = service.traerLibros();
         return ResponseEntity.ok(libros);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Libros> buscaIdLibro(@PathVariable Long id) {
-        return libroServ.buscaIdLibro(id)
+        return service.buscaIdLibro(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Libros>guardarLibro(@RequestBody Libros libro) {
-        Libros nuevo = libroServ.guardarLibro(libro);
+        Libros nuevo = service.guardarLibro(libro);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevo);
     }
 }
