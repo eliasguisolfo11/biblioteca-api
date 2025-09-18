@@ -3,15 +3,11 @@ package com.springcourse.spring_boot.controller;
 import com.springcourse.spring_boot.model.Autor;
 import com.springcourse.spring_boot.service.IAutorService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 
 
 @RestController
@@ -19,27 +15,31 @@ import java.util.List;
 public class AutorController {
 
 
-    private final IAutorService autorServ;
+    private final IAutorService service;
 
-    public AutorController(IAutorService autorServ) { this.autorServ = autorServ;}
+    public AutorController(IAutorService service) { this.service = service;}
 
     @GetMapping
     public ResponseEntity<List<Autor>> listarTodos() {
-        List<Autor> autores = autorServ.traerAutores();
+        List<Autor> autores = service.traerAutores();
         return ResponseEntity.ok(autores);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Autor> buscarAutorPorId(@PathVariable Long id) {
-        return autorServ.buscaIdAutor(id)
+        return service.buscaIdAutor(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Autor> guardarAutor(@RequestBody Autor autor) {
-        Autor nuevo = autorServ.guardarAutor(autor);
+        Autor nuevo = service.guardarAutor(autor);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevo);
     }
-    
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> eliminarAutor(@PathVariable Long id) {
+        return service.eliminarAutor(id);
+    }
 }
