@@ -48,12 +48,10 @@ public class AutorService implements IAutorService {
 
             if (autorAEliminar.isPresent()) {
                 dao.deleteById(id);
-
                 //borrado exitoso, sin contenido -> 204
                 return ResponseEntity.noContent().build();
 
             } else {
-
                 //no se encontro al autor -> 404
                 return ResponseEntity.notFound().build();
             }
