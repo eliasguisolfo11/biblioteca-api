@@ -1,55 +1,53 @@
-# biblioteca-api
+# 📚 Biblioteca API
 
-Biblioteca API
+[![Java](https://img.shields.io/badge/Java-17-red?logo=java)](https://www.oracle.com/java/)  
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.0-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)  
+[![Maven](https://img.shields.io/badge/Maven-3.9-blue?logo=apachemaven)](https://maven.apache.org/)  
 
-API REST desarrollada en Java 17 con Spring Boot para la gestión de libros y autores en una biblioteca. Incluye operaciones CRUD, búsqueda y endpoints preparados para expandirse con préstamos y reservas.
+API REST para gestionar una **biblioteca** con operaciones CRUD de **libros** y **autores**. Construida con **Java 17 + Spring Boot**, lista para expandirse con búsquedas avanzadas, préstamos y reservas.
 
-Tecnologías
+---
 
-Java 17
+## 🚀 Tecnologías
 
-Spring Boot 3
+- Java 17  
+- Spring Boot 3 (Web, Data JPA, Validation)  
+- Hibernate  
+- Maven  
+- H2 Database (dev) / PostgreSQL (prod)  
 
-Spring Data JPA
+---
 
-Maven
+## 📂 Estructura del proyecto
 
-H2 Database (dev) / PostgreSQL (prod)
-
-Estructura del proyecto
 src/main/java/com/biblioteca/
-    ├── controller   # Controladores REST
-    ├── service      # Interfaces y lógica de negocio
-    ├── repository   # Acceso a datos (JPA)
-    ├── model        # Entidades (Libro, Autor, etc.)
-    └── exception    # Excepciones custom
+├── controller # Endpoints REST
+├── service # Interfaces y lógica de negocio
+├── repository # Acceso a datos (JPA)
+├── model # Entidades (Libro, Autor)
+└── exception # Excepciones custom
 
-Endpoints principales
-Libros
+## 📌 Endpoints principales
 
-GET /api/libros → listar todos
+### Libros
+- **GET** `/api/libros` → listar todos  
+- **GET** `/api/libros/{id}` → buscar por id  
+- **POST** `/api/libros` → guardar libro  
+- **PUT** `/api/libros/{id}` → actualizar libro  
+- **DELETE** `/api/libros/{id}` → eliminar libro  
+- **GET** `/api/libros/{id}/existe` → comprobar existencia  
 
-GET /api/libros/{id} → buscar por id
+### Autores
+- **GET** `/api/autores` → listar todos  
+- **GET** `/api/autores/{id}` → buscar por id  
+- **POST** `/api/autores` → guardar autor  
+- **DELETE** `/api/autores/delete/{id}` → eliminar autor  
 
-POST /api/libros → guardar libro
+---
 
-PUT /api/libros/{id} → actualizar libro
+## 📝 Ejemplo de request
 
-DELETE /api/libros/{id} → eliminar libro
-
-GET /api/libros/{id}/existe → comprobar existencia
-
-Autores
-
-GET /api/autores → listar todos
-
-GET /api/autores/{id} → buscar por id
-
-POST /api/autores → guardar autor
-
-DELETE /api/autores/delete/{id} → eliminar autor
-
-Ejemplo de request
+http
 POST /api/libros
 Content-Type: application/json
 
@@ -62,8 +60,7 @@ Content-Type: application/json
   "autor": { "id": 1 }
 }
 
-Ejecución local
-# Clonar repo
+# Clonar el repo
 git clone https://github.com/eliasguisolfo11/biblioteca-api.git
 cd biblioteca-api
 
